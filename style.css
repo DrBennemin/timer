@@ -1,0 +1,16 @@
+html {
+    font-family: 'Chakra Petch', sans-serif;
+}
+body {
+    background: #333; 
+    color: #707171;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;   
+}
+button {
+    background: transparent;
+    border: none;
+}

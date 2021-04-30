@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet">
+    <title>Megageiler Timer</title>
+</head>
+<body>
+    
+    <div class="timer">
+        <input id="hours" type="number" value="00" min="0" max="99">
+        <span>:</span>
+        <input id="minutes" type="number" value="00" min="0" max="59">
+        <span>:</span>
+        <input id="seconds" type="number" value="00" min="0" max="59">
+    </div>
+    <p>hours:minutes:seconds</p>
+    <div class="buttons">
+        <button id="start"><img  src="./assets/play.svg" alt="play"></button>
+        <button id="pause"><img  src="./assets/pause.svg" alt="pause"></button>
+        <button id="reset"><img  src="./assets/reset.svg" alt="reset"></button> 
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
