@@ -17,7 +17,6 @@ let time = 0;
 timer.addEventListener("change", () => {
   prettifyTime();
   setTime();
-  console.log(time);
 });
 
 start.addEventListener("click", () => {
@@ -26,15 +25,19 @@ start.addEventListener("click", () => {
     if (time >= msSeconds) {
       time = time - msSeconds;
       updateTime();
+      pause.addEventListener("click", () => {
+        clearInterval(counter);
+        start.disabled = false;
+      });
       console.log(time);
     } else {
-      console.log("Ende");
       clearInterval(counter);
+      new Audio("./assets/aber-leon.mp3").play();
+      let alarm = setInterval(() => {
+        new Audio("./assets/aber-leon.mp3").play();
+      }, 2000);
     }
   }, msSeconds);
-});
-pause.addEventListener("click", () => {
-  console.log("pause");
 });
 reset.addEventListener("click", () => {
   location.reload();
