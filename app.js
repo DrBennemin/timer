@@ -25,6 +25,7 @@ start.addEventListener("click", () => {
   let counter = setInterval(() => {
     if (time >= msSeconds) {
       time = time - msSeconds;
+      updateTime();
       console.log(time);
     } else {
       console.log("Ende");
@@ -59,4 +60,11 @@ function prettifyTime() {
   timePrettifier(hours);
   timePrettifier(minutes);
   timePrettifier(seconds);
+}
+
+function updateTime() {
+  hours.value = Math.floor(time / msHours);
+  minutes.value = Math.floor((time % msHours) / msMinutes);
+  seconds.value = ((time % msHours) % msMinutes) / msSeconds;
+  prettifyTime();
 }
