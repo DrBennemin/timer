@@ -13,61 +13,65 @@ const msHours = msMinutes * 60;
 
 let time = 0;
 
+pause.disabled = true;
+
 // Events
 timer.addEventListener("change", () => {
-  prettifyTime();
-  setTime();
+    prettifyTime();
+    setTime();
 });
 
 start.addEventListener("click", () => {
-  start.disabled = true;
-  let counter = setInterval(() => {
-    if (time >= msSeconds) {
-      time = time - msSeconds;
-      updateTime();
-      pause.addEventListener("click", () => {
-        clearInterval(counter);
-        start.disabled = false;
-      });
-      console.log(time);
-    } else {
-      clearInterval(counter);
-      new Audio("./assets/aber-leon.mp3").play();
-      let alarm = setInterval(() => {
-        new Audio("./assets/aber-leon.mp3").play();
-      }, 2000);
-    }
-  }, msSeconds);
+    start.disabled = true;
+    pause.disabled = false;
+    let counter = setInterval(() => {
+        if (time >= msSeconds) {
+            time = time - msSeconds;
+            updateTime();
+            pause.addEventListener("click", () => {
+                clearInterval(counter);
+                start.disabled = false;
+                pause.disabled = true;
+            });
+            console.log(time);
+        } else {
+            clearInterval(counter);
+            new Audio("./assets/aber-leon.mp3").play();
+            let alarm = setInterval(() => {
+                new Audio("./assets/aber-leon.mp3").play();
+            }, 2000);
+        }
+    }, msSeconds);
 });
 reset.addEventListener("click", () => {
-  location.reload();
+    location.reload();
 });
 
 // Functions
 function setTime() {
-  time =
-    hours.value * msHours +
-    minutes.value * msMinutes +
-    seconds.value * msSeconds;
+    time =
+        hours.value * msHours +
+        minutes.value * msMinutes +
+        seconds.value * msSeconds;
 }
 
 function startTimer() {}
 
 function timePrettifier(key) {
-  if (key.value < 10) {
-    key.value = `0${key.value}`.slice(-2);
-  }
+    if (key.value < 10) {
+        key.value = `0${key.value}`.slice(-2);
+    }
 }
 
 function prettifyTime() {
-  timePrettifier(hours);
-  timePrettifier(minutes);
-  timePrettifier(seconds);
+    timePrettifier(hours);
+    timePrettifier(minutes);
+    timePrettifier(seconds);
 }
 
 function updateTime() {
-  hours.value = Math.floor(time / msHours);
-  minutes.value = Math.floor((time % msHours) / msMinutes);
-  seconds.value = ((time % msHours) % msMinutes) / msSeconds;
-  prettifyTime();
+    hours.value = Math.floor(time / msHours);
+    minutes.value = Math.floor((time % msHours) / msMinutes);
+    seconds.value = ((time % msHours) % msMinutes) / msSeconds;
+    prettifyTime();
 }
