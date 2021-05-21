@@ -31,6 +31,10 @@ input {
     border: none;
 }
 
+input:focus {
+    outline: 0.5px solid #fff;
+}
+
 input::-webkit-inner-spin-button {
     opacity: 0.5;
 }

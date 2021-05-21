@@ -22,27 +22,28 @@ timer.addEventListener("change", () => {
 });
 
 start.addEventListener("click", () => {
-    start.disabled = true;
-    pause.disabled = false;
-    let counter = setInterval(() => {
-        if (time >= msSeconds) {
-            time = time - msSeconds;
-            updateTime();
-            pause.addEventListener("click", () => {
-                clearInterval(counter);
-                start.disabled = false;
-                pause.disabled = true;
-            });
-            console.log(time);
-        } else {
-            clearInterval(counter);
-            new Audio("./assets/aber-leon.mp3").play();
-            let alarm = setInterval(() => {
-                new Audio("./assets/aber-leon.mp3").play();
-            }, 2000);
-        }
-    }, msSeconds);
+    startEvent();
 });
+
+let keyStatus = false;
+
+document.addEventListener("keydown", (event) => {
+    if (
+        (event.key === "Enter" && !keyStatus) ||
+        (event.key === 13 && !keyStatus)
+    ) {
+        startEvent();
+    } else {
+        pause.click();
+        keyStatus = false;
+    }
+});
+document.addEventListener("keyup", (event) => {
+    if (event.key === "Enter" || event.key === 13) {
+        keyStatus = true;
+    }
+});
+
 reset.addEventListener("click", () => {
     location.reload();
 });
@@ -74,4 +75,26 @@ function updateTime() {
     minutes.value = Math.floor((time % msHours) / msMinutes);
     seconds.value = ((time % msHours) % msMinutes) / msSeconds;
     prettifyTime();
+}
+
+function startEvent() {
+    start.disabled = true;
+    pause.disabled = false;
+    let counter = setInterval(() => {
+        if (time >= msSeconds) {
+            time = time - msSeconds;
+            updateTime();
+            pause.addEventListener("click", () => {
+                clearInterval(counter);
+                start.disabled = false;
+                pause.disabled = true;
+            });
+        } else {
+            clearInterval(counter);
+            new Audio("./assets/aber-leon.mp3").play();
+            let alarm = setInterval(() => {
+                new Audio("./assets/aber-leon.mp3").play();
+            }, 2000);
+        }
+    }, msSeconds);
 }

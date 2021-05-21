@@ -14,11 +14,32 @@
     </head>
     <body>
         <div class="timer">
-            <input id="hours" type="number" value="00" min="0" max="99" />
+            <input
+                id="hours"
+                onClick="this.select()"
+                type="number"
+                value="00"
+                min="0"
+                max="99"
+            />
             <span>:</span>
-            <input id="minutes" type="number" value="00" min="0" max="59" />
+            <input
+                id="minutes"
+                onClick="this.select()"
+                type="number"
+                value="00"
+                min="0"
+                max="59"
+            />
             <span>:</span>
-            <input id="seconds" type="number" value="00" min="0" max="59" />
+            <input
+                id="seconds"
+                onClick="this.select()"
+                type="number"
+                value="00"
+                min="0"
+                max="59"
+            />
         </div>
         <p>hours:minutes:seconds</p>
         <div class="buttons">
