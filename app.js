@@ -33,14 +33,10 @@ document.addEventListener("keydown", (event) => {
         (event.key === 13 && !keyStatus)
     ) {
         startEvent();
+        keyStatus = true;
     } else {
         pause.click();
         keyStatus = false;
-    }
-});
-document.addEventListener("keyup", (event) => {
-    if (event.key === "Enter" || event.key === 13) {
-        keyStatus = true;
     }
 });
 
